@@ -2,14 +2,12 @@ import Book from "./Book";
 import './BookList.css'
 
 
-function BookList(){
+function BookList({Books}){
     return (
         <div class="grid">
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
+            {Books.map((book) => (
+                <Book key={book.isbn} book={book} />
+            ))}
         </div>
     )
 }

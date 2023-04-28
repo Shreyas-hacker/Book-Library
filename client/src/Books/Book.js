@@ -1,14 +1,14 @@
 import React from "react"
 import './Book.css';
 
-function Book(){
+function Book({book}){
     return(
         <div className="Card">
             <div className="CardContent">
-                <p className="CardBook">Book1</p>
-                <p className="CardTitle">title</p>
-                <p className="CardYear">year</p>
-                <p className="CardPublisher">publisher</p>
+                <p className="CardTitle">{book.title}</p>
+                <p className="CardTitle">{book.subtitle}</p>
+                <p className="CardYear">Year: {book.published.slice(0,4)}</p>
+                <p className="CardPublisher">Published by: {book.publisher}</p>
             </div>
         </div>
     )
