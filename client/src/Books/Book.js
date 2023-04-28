@@ -1,13 +1,15 @@
 import React from "react"
-import './Book.css'
+import './Book.css';
 
 function Book(){
     return(
-        <div>
-            <h1>Book1</h1>
-            <p>title</p>
-            <p>publisher</p>
-            <p>year</p>
+        <div className="Card">
+            <div className="CardContent">
+                <p className="CardBook">Book1</p>
+                <p className="CardTitle">title</p>
+                <p className="CardYear">year</p>
+                <p className="CardPublisher">publisher</p>
+            </div>
         </div>
     )
 }

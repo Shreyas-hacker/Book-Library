@@ -1,0 +1,37 @@
+.Card{
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px #ccc;
+    color: #253b56;
+    margin: 12px 0px;
+    width: 350px;
+    min-height: 200px;
+}
+
+.CardContent {
+    padding: 4px 16px 20px 16px;
+}
+
+.CardBook{
+    font-family: Avenir-Heavy;
+    font-size: 20;
+    font-weight: 600;
+    margin: 12px 0px 0px 0px;
+}
+
+.CardTitle{
+    font-family: Avenir-Heavy;
+    font-size: 14;
+    font-weight: 600;
+    margin: 12px 0px 0px 0px;
+}
+
+.CardYear{
+    color: #8294aa;
+    font-size: 14;
+    margin: 4px 0;
+}
+
+.CardPublisher{
+    font-size: 14;
+    margin: 8px 0 0 0;
+}
