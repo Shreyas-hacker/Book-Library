@@ -1,29 +1,25 @@
 {
-  "name": "books",
+  "name": "author",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "title": {
+    "name": {
       "type": "string",
       "required": true
     },
-    "publisher": {
+    "biography": {
       "type": "string"
-    },
-    "year": {
-      "type": "number",
-      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "author": {
-      "type": "belongsTo",
-      "model": "author",
-      "foreignKey": ""
+    "books": {
+      "type": "hasMany",
+      "model": "books",
+      "foreignKey": "authorId"
     }
   },
   "acls": [],

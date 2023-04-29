@@ -22,6 +22,14 @@
   grid-gap: 12px;
 }
 
+h1{
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
 .add-button{
   position: fixed;
   bottom: "20px";

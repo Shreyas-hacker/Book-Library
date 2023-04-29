@@ -38,5 +38,9 @@
   "books": {
     "dataSource": "db",
     "public": true
+  },
+  "author": {
+    "dataSource": "db",
+    "public": true
   }
 }

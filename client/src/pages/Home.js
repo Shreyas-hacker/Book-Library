@@ -12,6 +12,11 @@ function Home(){
     const [searchedItem, setSearchedItem] = useState("");
     const navigate = useNavigate();
 
+    function deleteBook(isbn){
+      setBooks(books.filter((val) => {
+        return val.isbn !== isbn;
+      }));
+    }
     return (
         <>
         <div className='content'>
@@ -20,21 +25,26 @@ function Home(){
               <input type="text" placeholder="Search Book" onChange={event => setSearchedItem(event.target.value)}/>
             </div>
           </div>
-          <div className='grid'>
-            {
-              books.filter((val) => {
-                if(searchedItem === "") {
-                  return val;
-                } else if (val.title.toLowerCase().includes(searchedItem.toLowerCase())) {
-                  return val;
+          {
+            books.length===0 ? (
+              <h1>No Books! Please add one</h1>
+            ):(
+              <div className='grid'>
+                {
+                  books.filter((val) => {
+                    if(searchedItem === "") {
+                      return val;
+                    } else if (val.title.toLowerCase().includes(searchedItem.toLowerCase())) {
+                      return val;
+                    }
+                  }).map((val, key) => {
+                    return (
+                        <Book key={key} book={val} deleteBook={deleteBook}/>
+                    );
+                  })
                 }
-              }).map((val, key) => {
-                return (
-                    <Book key={key} book={val}/>
-                );
-              })
-            }
-          </div>
+              </div>
+            )}
           <div className='add-button'>
             <IconButton size='large' variant='contained' onClick={() => {
               navigate("/addBook");
