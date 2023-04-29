@@ -35,3 +35,9 @@
     font-size: 14;
     margin: 8px 0 0 0;
 }
+
+.buttonContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}

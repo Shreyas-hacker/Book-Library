@@ -20,6 +20,7 @@ function Home(){
     return (
         <>
         <div className='content'>
+          <h1>Book List</h1>
           <div className="App">
             <div>
               <input type="text" placeholder="Search Book" onChange={event => setSearchedItem(event.target.value)}/>
