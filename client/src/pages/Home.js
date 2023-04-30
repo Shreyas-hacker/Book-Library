@@ -40,13 +40,31 @@ function Home(){
     });
     const bookAuthor = await Promise.all(promises);
     setAuthorIds(bookAuthor);
-    console.log(authorIds);
   }
 
-  function deleteBook(id){
-    setBooks(books.filter((val) => {
-      return val.id !== id;
-    }));
+  function deleteBook(id,authorId,authorName){
+    let count = 0;
+    for(const author of authorIds){
+      if(author === authorName){
+        count++;
+      }
+    }
+    console.log(count);
+    if(count === 1){
+      axios.delete(`http://localhost:3000/api/authors/${authorId}`).then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+
+    axios.delete(`http://localhost:3000/api/books/${id}`).then((res) => {
+      const del = books.filter(book => id !== book.id);
+      setBooks(del);
+    }).catch((err) => {
+      console.log(err);
+    });
+    setAuthorIds(authorIds.filter((author) => author !== authorName));
   }
   return (
       <>
@@ -71,7 +89,7 @@ function Home(){
                   }
                 }).map((val, key) => {
                   return (
-                      <Book key={key} book={val} authorId={authorIds[key]}deleteBook={deleteBook}/>
+                      <Book key={key} book={val} deleteBook={deleteBook} authorId={authorIds[key]}/>
                   );
                 })
               }

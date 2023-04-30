@@ -17,7 +17,7 @@ function Book({book,authorId,deleteBook}){
                     <Button>
                         <Link to={`/editBook/${book.id}`}><EditIcon/></Link>
                     </Button>
-                    <Button onClick={()=>{deleteBook(book.id)}}>
+                    <Button onClick={()=>{deleteBook(book.id,book.authorId,authorId)}}>
                         <DeleteIcon />
                     </Button>
                 </div>

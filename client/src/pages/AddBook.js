@@ -7,6 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Alert from 'react-bootstrap/Alert';
+import { Link } from 'react-router-dom';
 
 function AddBook(){
     const [title,setTitle] = useState('');
@@ -31,13 +32,8 @@ function AddBook(){
     }
 
     async function getAuthor(){
-        await axios.get("http://localhost:3000/api/authors").then((res) => {
-            setAuthors(res.data.filter((author) => {
-                return author.name === authorName;
-            }));
-        }).catch((err) => {
-            console.log(err);
-        });
+        const res = await axios.get("http://localhost:3000/api/authors");
+        return res.data.filter((author) => author.name === authorName);
     }
 
     async function addAuthor(){
@@ -50,18 +46,19 @@ function AddBook(){
             console.log(err);
         });
     }
-    function addNewBook(){
+    async function addNewBook(){
         if(title === '' || authorName === '' || publisher === '' || year === 0){
             setIsValid(false);
             return;
         };
-        getAuthor();
-        if (authors.length === 0){
+        var author = await getAuthor()
+        if (author.length === 0){
             console.log('went here')
-            addAuthor();
-            getAuthor();
-            console.log(authors);
+            await addAuthor();
+            author = await getAuthor();
         }
+        setAuthors(author);
+
         const newBook = {
             title: title,
             authorId: authors[0].id,
@@ -105,9 +102,11 @@ function AddBook(){
                     />
                 </LocalizationProvider>
                 <div style={{marginTop: 20}}>
-                    <Button variant="primary" onClick={addNewBook}>
-                        Add book
-                    </Button>
+                    <Link to='/'>
+                        <Button variant="primary" onClick={addNewBook}>
+                            Add book
+                        </Button>
+                    </Link>
                 </div>
             </Form>
         </div>
