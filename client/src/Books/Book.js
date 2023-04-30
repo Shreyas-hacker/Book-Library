@@ -10,13 +10,14 @@ function Book({book,deleteBook}){
         <div className="Card">
             <div className="CardContent">
                 <p className="CardTitle">{book.title}</p>
-                <p className="CardTitle">{book.subtitle}</p>
+                <p className="CardTitle">{book.authorId}</p>
+                <p className="CardYear">{book.year}</p>
                 <p className="CardPublisher">Published by: {book.publisher}</p>
                 <div className="buttonContainer">
                     <Button>
-                        <Link to={`/editBook/${book.isbn}`}><EditIcon/></Link>
+                        <Link to={`/editBook/${book.id}`}><EditIcon/></Link>
                     </Button>
-                    <Button onClick={()=>{deleteBook(book.isbn)}}>
+                    <Button onClick={()=>{deleteBook(book.id)}}>
                         <DeleteIcon />
                     </Button>
                 </div>

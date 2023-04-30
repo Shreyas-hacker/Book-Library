@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import './Home.css';
 import bookList from '../bookList';
@@ -12,9 +13,22 @@ function Home(){
     const [searchedItem, setSearchedItem] = useState("");
     const navigate = useNavigate();
 
-    function deleteBook(isbn){
+    useEffect(() => {
+      getBooks();
+    }, []);
+
+    function getBooks(){
+      axios.get('http://localhost:3000/api/books').then((res) => {
+        console.log(res.data);
+        setBooks(res.data);
+      }
+      ).catch((err) => {
+        console.log(err);
+      });
+    }
+    function deleteBook(id){
       setBooks(books.filter((val) => {
-        return val.isbn !== isbn;
+        return val.id !== id;
       }));
     }
     return (

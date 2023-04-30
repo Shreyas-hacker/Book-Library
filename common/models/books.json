@@ -16,6 +16,10 @@
     "year": {
       "type": "number",
       "required": true
+    },
+    "authorId":{
+      "type": "string",
+      "required":true
     }
   },
   "validations": [],
@@ -23,7 +27,7 @@
     "author": {
       "type": "belongsTo",
       "model": "author",
-      "foreignKey": ""
+      "foreignKey": "authorId"
     }
   },
   "acls": [],
