@@ -8,6 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
+import BackButton from '../BackButton';
 
 function AddBook(){
     const [title,setTitle] = useState('');
@@ -78,6 +79,7 @@ function AddBook(){
         <>
         {isValid ? null : <Alert variant="danger" onClose={() => setIsValid(true)} dismissible>Please fill in all the fields</Alert>}
         {addBook ? <Alert variant="success" onClose={() => setAddBook(false)} dismissible>Book added successfully</Alert> : null}
+        <BackButton/>
         <div style={{display:'block',width: 700,padding:30}}>
             <h4>Add Book</h4>
             <Form>

@@ -16,9 +16,11 @@ function Book({book,authorId,handleShow}){
                 <p className="CardYear">Year published:{book.year}</p>
                 <p className="CardPublisher">Published by: {book.publisher}</p>
                 <div className="buttonContainer">
-                    <Button>
-                        <Link to={`/editBook/${book.id}`}><EditIcon/></Link>
-                    </Button>
+                    <Link to={`/editBook/${book.id}`}>
+                        <Button>
+                            <EditIcon/>
+                        </Button>
+                    </Link>
                     <Button onClick={()=>handleShow(book.id,book.authorId,authorId)}>
                         <DeleteIcon />
                     </Button>

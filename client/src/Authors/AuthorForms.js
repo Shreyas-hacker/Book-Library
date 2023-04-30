@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { useLocation,Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import BackButton from '../BackButton';
 
 function AuthorForm(){
     const [author, setAuthor] = useState({});
@@ -48,6 +49,8 @@ function AuthorForm(){
         });
     }
     return(
+        <>
+        <BackButton/>
         <div style={{display:'block',width: 700,padding:30}}>
             <h4>Author Details</h4>
             <Form>
@@ -68,6 +71,7 @@ function AuthorForm(){
                 </div>
             </Form>
         </div>
+        </>
     )
 }
 
