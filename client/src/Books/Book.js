@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button } from "@mui/material";
 
-function Book({book,authorId,deleteBook}){
+function Book({book,authorId,handleShow}){
     return(
         <div className="Card">
             <div className="CardContent">
@@ -17,7 +17,7 @@ function Book({book,authorId,deleteBook}){
                     <Button>
                         <Link to={`/editBook/${book.id}`}><EditIcon/></Link>
                     </Button>
-                    <Button onClick={()=>{deleteBook(book.id,book.authorId,authorId)}}>
+                    <Button onClick={()=>handleShow(book.id,book.authorId,authorId)}>
                         <DeleteIcon />
                     </Button>
                 </div>

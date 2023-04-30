@@ -4,14 +4,25 @@ import axios from 'axios';
 
 import './Home.css';
 import Book from '../Books/Book';
+import DeleteConfirmation from './DeleteConfirmation';
 import {IconButton } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function Home(){
-  var bookAuthor = []
+  const [id, setId] = useState("");
+  const [authorId, setAuthorId] = useState("");
+  const [authorName, setAuthorName] = useState("");
   const [books, setBooks] = useState([]);
   const [searchedItem, setSearchedItem] = useState("");
   const [authorIds, setAuthorIds] = useState([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (id,authorId,authorName) => {
+    setShow(true)
+    setId(id)
+    setAuthorId(authorId)
+    setAuthorName(authorName)
+  };
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +33,7 @@ function Home(){
     getAuthor();
   }, [books]);
 
+  //get all books
   function getBooks(){
     axios.get('http://localhost:3000/api/books').then((res) => {
       setBooks(res.data);
@@ -30,6 +42,7 @@ function Home(){
     });
   }
 
+  //get author name
   async function getAuthor(){
     const promises = books.map((book) => {
       return axios.get(`http://localhost:3000/api/authors/${book.authorId}`).then((res) => {
@@ -42,7 +55,9 @@ function Home(){
     setAuthorIds(bookAuthor);
   }
 
+  //delete book
   function deleteBook(id,authorId,authorName){
+    console.log(id,authorId,authorName);
     let count = 0;
     for(const author of authorIds){
       if(author === authorName){
@@ -66,8 +81,11 @@ function Home(){
     });
     setAuthorIds(authorIds.filter((author) => author !== authorName));
   }
+
+  
   return (
       <>
+      {show && <DeleteConfirmation show={show} handleClose={handleClose} handleDelete={deleteBook} id={id} authorId={authorId} authorName={authorName}/>}
       <div className='content'>
         <h1>Book List</h1>
         <div className="App">
@@ -89,7 +107,7 @@ function Home(){
                   }
                 }).map((val, key) => {
                   return (
-                      <Book key={key} book={val} deleteBook={deleteBook} authorId={authorIds[key]}/>
+                      <Book key={key} book={val} deleteBook={deleteBook} authorId={authorIds[key]} handleShow={handleShow}/>
                   );
                 })
               }
