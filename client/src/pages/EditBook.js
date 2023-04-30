@@ -66,7 +66,6 @@ function EditBook(){
 
     //handle book edit and author change
     async function handleEditBook(e){
-        e.preventDefault();
         const newBook = {
             title: title,
             authorId: authorId,
@@ -106,9 +105,11 @@ function EditBook(){
                     />
                 </LocalizationProvider>
                 <div style={{marginTop: 20}}>
-                    <Button variant="primary" type="submit">
-                        Edit book
-                    </Button>
+                    <Link to='/'>
+                        <Button variant="primary" onClick={handleEditBook}>
+                            Edit book
+                        </Button>
+                    </Link>
                 </div>
             </Form>
         </div>

@@ -80,6 +80,7 @@ function Home(){
       console.log(err);
     });
     setAuthorIds(authorIds.filter((author) => author !== authorName));
+    handleClose();
   }
 
   

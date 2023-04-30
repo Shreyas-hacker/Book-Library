@@ -58,11 +58,10 @@ function AddBook(){
             await addAuthor();
             author = await getAuthor();
         }
-        setAuthors(author);
 
         const newBook = {
             title: title,
-            authorId: authors[0].id,
+            authorId: author[0].id,
             publisher: publisher,
             year: year
         }
@@ -72,6 +71,7 @@ function AddBook(){
         }).catch((err) => {
             console.log(err);
         });
+        
         setAddBook(true);
     }
 
