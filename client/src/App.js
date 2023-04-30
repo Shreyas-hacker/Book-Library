@@ -2,6 +2,7 @@ import {BrowserRouter, Routes,Route} from "react-router-dom";
 import Home from "./pages/Home";
 import AddBook from "./pages/AddBook";
 import EditBook from "./pages/EditBook";
+import AuthorForm from "./Authors/AuthorForms";
 
 function App(){
   return (
@@ -10,6 +11,7 @@ function App(){
         <Route path="/" element={<Home/>}/>
         <Route path="/addBook" element={<AddBook/>}/>
         <Route path="/editBook/:id" element={<EditBook/>}/>
+        <Route path="/author/:name" element={<AuthorForm/>}/>
       </Routes>
     </BrowserRouter>
   );

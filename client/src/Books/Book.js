@@ -9,9 +9,11 @@ function Book({book,authorId,handleShow}){
     return(
         <div className="Card">
             <div className="CardContent">
-                <p className="CardTitle">{book.title}</p>
-                <p className="CardTitle">{authorId}</p>
-                <p className="CardYear">{book.year}</p>
+                <p className="CardTitle">Title: {book.title}</p>
+                <Link to={`/author/${book.authorId}`}>
+                    <p className="CardTitle">Author: {authorId}</p>
+                </Link>
+                <p className="CardYear">Year published:{book.year}</p>
                 <p className="CardPublisher">Published by: {book.publisher}</p>
                 <div className="buttonContainer">
                     <Button>
